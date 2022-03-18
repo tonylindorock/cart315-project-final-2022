@@ -16,18 +16,13 @@ public class GameManager : MonoBehaviour
     private GameObject image;
     private float a;
     private bool startAnim = false;
+
+    
     // Start is called before the first frame update
     void Start()
     {
         image = GameObject.Find("Canvas/Bg");
-        if (soundManager != null){
-            bgMusic = soundManager.GetComponents<AudioSource>();
-            foreach (AudioSource audio in bgMusic){
-                if (audio.clip.name == "music_light"){
-                    music = audio;
-                }
-            }
-        }
+        player.GetComponent<FPSController>().setPlay(false);
     }
 
     void Update(){

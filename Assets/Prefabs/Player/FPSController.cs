@@ -31,16 +31,15 @@ public class FPSController : MonoBehaviour
 
     bool isGrounded = false;
 
+    public bool canPlay = true;
     public bool canLook = true;
     public bool canMove = true;
     public bool canAct = true;
+    
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
-
-        // Lock cursor
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
 
@@ -62,13 +61,18 @@ public class FPSController : MonoBehaviour
 
         // if on ground
         if (isGrounded && velocity.y < 0f) {
-            canMove = true;
+            if (canPlay){
+                canMove = true;
+            }
+            velocity.y = gravity;
         }
 
         // handle jump
-        if (Input.GetButtonDown("Jump") && isGrounded){
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity * gravityMultipler);
-            canMove = false;
+        if(canMove){
+            if (Input.GetButtonDown("Jump") && isGrounded){
+                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity * gravityMultipler);
+                canMove = false;
+            }
         }
 
         // apply gravity
@@ -95,6 +99,18 @@ public class FPSController : MonoBehaviour
             if(Input.GetButtonDown("Fire1")){
                 GetComponent<FPSRaycast>().Shoot();
             }
+        }
+    }
+
+    public void setPlay(bool val){
+        canPlay = val;
+        canLook = val;
+        canMove = val;
+        canAct = val;
+        if (canPlay){
+            Cursor.lockState = CursorLockMode.Locked;
+        }else{
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 }
