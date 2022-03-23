@@ -40,6 +40,7 @@ public class FPSController : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        setPlay(canPlay);
     }
 
 
