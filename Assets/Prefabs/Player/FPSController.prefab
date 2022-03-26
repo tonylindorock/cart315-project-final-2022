@@ -334,10 +334,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7abf16a6c1db141f096974ea8ff62e57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 12
+  walkSpeed: 10
   runSpeed: 12
   jumpSpeed: 10
-  acceleration: 0.6
+  normalAcc: 24
+  airAcc: 1
   airSpeed: 4
   jumpHeight: 6
   gravity: -9.8
@@ -350,7 +351,7 @@ MonoBehaviour:
   groundDis: 0.4
   groundMask:
     serializedVersion: 2
-    m_Bits: 136
+    m_Bits: 392
   hand: {fileID: 2620549318801025955}
   throwForce: 1000
   canPlay: 1

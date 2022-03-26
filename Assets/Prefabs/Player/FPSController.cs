@@ -7,10 +7,12 @@ public class FPSController : MonoBehaviour
     public float walkSpeed = 7.5f;
     public float runSpeed = 11.5f;
     public float jumpSpeed = 8.0f;
-    public float acceleration = 0.6f;
+
+    private float acceleration = 6f;
+    public float normalAcc = 6f;
+    public float airAcc = 1f;
 
     float speed = 0f;
-    public float airSpeed = 4f;
 
     public float jumpHeight = 3f;
     public float gravity = -9.8f;
@@ -69,10 +71,7 @@ public class FPSController : MonoBehaviour
             z = Input.GetAxis("Vertical");
         }
 
-        Vector3 move = (transform.right * x + transform.forward * z) * walkSpeed;
-
-        velocity.x = move.x;
-        velocity.z = move.z;
+        Vector3 move = (transform.right * x + transform.forward * z);
 
         // if on ground
         if (isGrounded && velocity.y < 0f) {
@@ -80,6 +79,9 @@ public class FPSController : MonoBehaviour
                 canMove = true;
             }
             velocity.y = gravity;
+            acceleration = normalAcc;
+        }else{
+		    acceleration = airAcc;
         }
 
         // handle jump
@@ -90,8 +92,11 @@ public class FPSController : MonoBehaviour
             }
         }
 
+        velocity = Vector3.Lerp(velocity, move * walkSpeed, acceleration * Time.deltaTime);
+
         // apply gravity
         velocity.y += gravity * gravityMultipler * Time.deltaTime;
+        
         controller.Move(velocity * Time.deltaTime);
 
         HandleLook();
