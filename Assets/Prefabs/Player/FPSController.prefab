@@ -339,7 +339,6 @@ MonoBehaviour:
   jumpSpeed: 10
   normalAcc: 24
   airAcc: 1
-  airSpeed: 4
   jumpHeight: 6
   gravity: -9.8
   gravityMultipler: 4

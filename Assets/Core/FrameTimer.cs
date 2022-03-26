@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Timer : MonoBehaviour
+public class FrameTimer : MonoBehaviour
 {
-    public float waitTime = 1f;
+    public int waitFrame = 60;
     public bool auto = false;
     public bool repeat = false;
 
@@ -13,12 +13,12 @@ public class Timer : MonoBehaviour
 
     public string func;
 
-    private float time = 0f;
-    public float displayTime = 0f;
+    private int frame = 0;
+    public int displayFrame = 0;
 
     void Start()
     {
-        time = waitTime;
+        frame = Time.frameCount;
         running = auto;
     }
 
@@ -26,28 +26,26 @@ public class Timer : MonoBehaviour
     void Update()
     {
         if(running){
-            if (time > 0f){
-                time -= Time.deltaTime;
-            }else{
+            if (Time.frameCount - frame > waitFrame){
                 if (!done){
                     done = true;
                     if (!repeat){
                         running = false;
                     }else{
                         done = false;
-                        time = waitTime;
+                        frame = Time.frameCount;
                     }
                     CallFunc();
                 }
             }
-            displayTime = time;
+            displayFrame = Time.frameCount - frame;
         }
     }
 
     public void StartTimer(){
+        frame = Time.frameCount;
         running = true;
         done = false;
-        time = waitTime;
     }
 
     public void StopTimer(){
@@ -60,7 +58,7 @@ public class Timer : MonoBehaviour
     }
 
     void CallFunc(){
-        if (func != null){
+        if (func != null && func != ""){
             SendMessage(func);
         }
     }

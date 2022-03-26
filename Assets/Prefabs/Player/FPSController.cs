@@ -14,6 +14,9 @@ public class FPSController : MonoBehaviour
 
     float speed = 0f;
 
+    public float jumpBuffer = 0.2f;
+    private float jumpBufferTimer = 0f;
+
     public float jumpHeight = 3f;
     public float gravity = -9.8f;
     public float gravityMultipler = 4f;
@@ -44,8 +47,10 @@ public class FPSController : MonoBehaviour
 
     public bool canPlay = true;
     public bool canLook = true;
-    public bool canMove = true;
+    public bool canMove = true; // not affecting jumping
     public bool canAct = true;
+
+    public bool disableMovement = false;
     
 
     void Start()
@@ -75,21 +80,23 @@ public class FPSController : MonoBehaviour
 
         // if on ground
         if (isGrounded && velocity.y < 0f) {
+            jumpBufferTimer = jumpBuffer;
             if (canPlay){
                 canMove = true;
             }
             velocity.y = gravity;
             acceleration = normalAcc;
+        // if not no ground
         }else{
+            canMove = false;
+            jumpBufferTimer -= Time.deltaTime;
 		    acceleration = airAcc;
         }
 
         // handle jump
-        if(canMove){
-            if (Input.GetButtonDown("Jump") && isGrounded){
-                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity * gravityMultipler);
-                canMove = false;
-            }
+        if (Input.GetButtonDown("Jump") && (isGrounded || jumpBufferTimer > 0)){
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity * gravityMultipler);
+            
         }
 
         velocity = Vector3.Lerp(velocity, move * walkSpeed, acceleration * Time.deltaTime);
