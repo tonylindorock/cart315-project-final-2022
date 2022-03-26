@@ -140,5 +140,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09e3c9723aa2944de81c8040b0ce0453, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uniqueName: Pumpkin
   damage: 10
   speed: 25

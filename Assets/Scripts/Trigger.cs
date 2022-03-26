@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Trigger : MonoBehaviour
 {   
+    public string triggerId;
+    public string eventId;
     public GameObject triggerObject;
 
     // Start is called before the first frame update
@@ -18,7 +20,12 @@ public class Trigger : MonoBehaviour
         
     }
 
-    public void Triggered(){
-        triggerObject.GetComponent<TriggerEvent>().StartEvent();
+    public void Triggered(string id = ""){
+        if (triggerId == id){
+            TriggerEvent[] events = triggerObject.GetComponents<TriggerEvent>();
+            for (int i = 0; i < events.Length; i++){
+                events[i].StartEvent(eventId);
+            }
+        }
     }
 }

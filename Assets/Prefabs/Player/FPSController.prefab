@@ -318,7 +318,7 @@ CharacterController:
   m_Height: 2
   m_Radius: 0.5
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_StepOffset: 0.1
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
@@ -339,6 +339,7 @@ MonoBehaviour:
   jumpSpeed: 10
   normalAcc: 24
   airAcc: 1
+  jumpBuffer: 0.2
   jumpHeight: 6
   gravity: -9.8
   gravityMultipler: 4
@@ -357,6 +358,7 @@ MonoBehaviour:
   canLook: 1
   canMove: 1
   canAct: 1
+  disableMovement: 0
 --- !u!114 &2838354337883177274
 MonoBehaviour:
   m_ObjectHideFlags: 0

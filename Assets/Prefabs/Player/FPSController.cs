@@ -86,17 +86,18 @@ public class FPSController : MonoBehaviour
             }
             velocity.y = gravity;
             acceleration = normalAcc;
+            controller.slopeLimit = 45f;
         // if not no ground
         }else{
             canMove = false;
             jumpBufferTimer -= Time.deltaTime;
 		    acceleration = airAcc;
+            controller.slopeLimit = 90f;
         }
 
         // handle jump
         if (Input.GetButtonDown("Jump") && (isGrounded || jumpBufferTimer > 0)){
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity * gravityMultipler);
-            
         }
 
         velocity = Vector3.Lerp(velocity, move * walkSpeed, acceleration * Time.deltaTime);

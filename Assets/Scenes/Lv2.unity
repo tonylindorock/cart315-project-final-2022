@@ -184,7 +184,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4603114893532390546, guid: 59ba605b5601b49a7ad5410f84ae26ca, type: 3}
       propertyPath: waitTime
-      value: 60
+      value: 999
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59ba605b5601b49a7ad5410f84ae26ca, type: 3}
@@ -567,7 +567,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4603114893532390546, guid: 59ba605b5601b49a7ad5410f84ae26ca, type: 3}
       propertyPath: waitTime
-      value: 60
+      value: 999
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59ba605b5601b49a7ad5410f84ae26ca, type: 3}
@@ -1019,6 +1019,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 921953679512550478, guid: 1d699964430d54a4c944890f562e6947, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.034
+      objectReference: {fileID: 0}
+    - target: {fileID: 921953680012120537, guid: 1d699964430d54a4c944890f562e6947, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 921953680390891973, guid: 1d699964430d54a4c944890f562e6947, type: 3}
       propertyPath: m_Name
       value: FPSController
@@ -1132,6 +1140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb2d1435c11884d48b678da6a14ad937, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerId: 
+  eventId: OpenDoor
   triggerObject: {fileID: 1436164488}
 --- !u!1 &1436164488 stripped
 GameObject:
@@ -1150,6 +1160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eef85f25216f4543bc37fa301b08401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventId: OpenDoor
   func: Reveal
   val: 
   valType: 0
@@ -1254,6 +1265,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb2d1435c11884d48b678da6a14ad937, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerId: 
+  eventId: 
   triggerObject: {fileID: 2034845368}
 --- !u!1001 &1721278717
 PrefabInstance:
@@ -1443,7 +1456,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4603114893532390546, guid: 59ba605b5601b49a7ad5410f84ae26ca, type: 3}
       propertyPath: waitTime
-      value: 60
+      value: 999
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59ba605b5601b49a7ad5410f84ae26ca, type: 3}
@@ -1563,6 +1576,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eef85f25216f4543bc37fa301b08401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventId: 
   func: GoToScene
   val: 3
   valType: 1
@@ -1768,6 +1782,7 @@ MonoBehaviour:
   auto: 1
   repeat: 1
   func: UpdateHint
+  displayTime: 0
 --- !u!1001 &1765015171498736098
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -9,6 +9,8 @@ public class Throwable : MonoBehaviour
 
     private Rigidbody body;
 
+    public string uniqueName = "Throwable";
+
     public float damage = 10f;
     public float speed = 1f;
 
@@ -47,5 +49,9 @@ public class Throwable : MonoBehaviour
         Vector3 dir = owner.GetComponent<FPSController>().playerCamera.transform.forward;
         Drop();
         body.AddForce(dir * force);
+    }
+
+    public string GetName(){
+        return uniqueName;
     }
 }
