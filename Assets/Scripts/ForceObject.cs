@@ -16,7 +16,6 @@ public class ForceObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetComponent<Rigidbody>().AddForce(0f, 0f, -1f);
     }
 
     private void OnCollisionEnter(Collision other) {

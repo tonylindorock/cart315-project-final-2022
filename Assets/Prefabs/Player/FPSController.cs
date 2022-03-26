@@ -29,6 +29,15 @@ public class FPSController : MonoBehaviour
     float rotationX = 0;
     Vector3 velocity;
 
+    private FPSRaycast lookRaycast;
+    public GameObject hand;
+
+    private GameObject holdingObj;
+    public float throwForce = 1000f;
+
+    private GameObject crosshairSolid;
+    private GameObject crosshairHollow;
+
     bool isGrounded = false;
 
     public bool canPlay = true;
@@ -40,7 +49,12 @@ public class FPSController : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        setPlay(canPlay);
+        lookRaycast = GetComponent<FPSRaycast>();
+        
+        crosshairSolid = GameObject.Find("/FPSController/Canvas/Crosshair");
+        crosshairHollow = GameObject.Find("/FPSController/Canvas/Crosshair_1");
+
+        SetPlay(canPlay);
     }
 
 
@@ -81,7 +95,8 @@ public class FPSController : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
 
         HandleLook();
-        HandleFire();
+        HandleInteract();
+        //HandleFire();
     }
 
     private void HandleLook(){
@@ -103,7 +118,19 @@ public class FPSController : MonoBehaviour
         }
     }
 
-    public void setPlay(bool val){
+    private void HandleInteract(){
+        if (canPlay){
+             if (holdingObj != null){
+                if(Input.GetButtonDown("Fire1")){
+                    holdingObj.GetComponent<Throwable>().Throw(throwForce);
+                    holdingObj = null;
+                }
+            }
+            lookRaycast.Shoot();
+        }
+    }
+
+    public void SetPlay(bool val){
         canPlay = val;
         canLook = val;
         canMove = val;
@@ -113,5 +140,19 @@ public class FPSController : MonoBehaviour
         }else{
             Cursor.lockState = CursorLockMode.None;
         }
+    }
+
+    public void UpdateCrosshair(int id){
+        if (id == 0){
+            crosshairSolid.GetComponent<CanvasRenderer>().SetAlpha(1f);
+            crosshairHollow.GetComponent<CanvasRenderer>().SetAlpha(0f);
+        }else{
+            crosshairSolid.GetComponent<CanvasRenderer>().SetAlpha(0f);
+            crosshairHollow.GetComponent<CanvasRenderer>().SetAlpha(1f);
+        }
+    }
+
+    public void SetHoldingObj(GameObject obj){
+        holdingObj = obj;
     }
 }

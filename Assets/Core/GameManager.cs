@@ -22,28 +22,14 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         image = GameObject.Find("Canvas/Bg");
-        player.GetComponent<FPSController>().setPlay(false);
     }
 
     void Update(){
-        if (startAnim){
-            if (image != null){
-                a += 0.4f * Time.deltaTime;
-                a = Mathf.Clamp(a, 0f, 1f);
-                image.GetComponent<Image>().color = new Color(1f, 1f, 1f, a);
-
-                if (a == 1f && !music.isPlaying){
-                    GetComponent<Timer>().StartTimer();
-                    startAnim = false;
-                }
-            }
-        }
+        
     }
 
     public void EndGame(){
-        if (canvas != null){
-            startAnim = true;
-        }
+        
     }
 
     public void GoToScene(int id){
