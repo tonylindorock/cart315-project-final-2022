@@ -18,7 +18,7 @@ public class MainMenu : MonoBehaviour
     }
 
     public void StartGame(){
-        
+        GameObject.Find("GameManager").GetComponent<GameManager>().StartGame();
     }
 
     public void QuitGame(){

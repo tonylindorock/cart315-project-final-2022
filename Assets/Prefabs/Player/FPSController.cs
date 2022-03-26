@@ -87,12 +87,14 @@ public class FPSController : MonoBehaviour
             velocity.y = gravity;
             acceleration = normalAcc;
             controller.slopeLimit = 45f;
+            controller.stepOffset = 0.3f;
         // if not no ground
         }else{
             canMove = false;
             jumpBufferTimer -= Time.deltaTime;
 		    acceleration = airAcc;
             controller.slopeLimit = 90f;
+            controller.stepOffset = 0f;
         }
 
         // handle jump

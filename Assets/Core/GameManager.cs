@@ -21,15 +21,20 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        image = GameObject.Find("Canvas/Bg");
     }
 
     void Update(){
         
     }
 
+    public void StartGame(){
+        GameObject.Find("MainMenu").SetActive(false);
+        GameObject.Find("MainMenuCam").SetActive(false);
+        player.SetActive(true);
+    }
+
     public void EndGame(){
-        
+        GoToScene(0);
     }
 
     public void GoToScene(int id){

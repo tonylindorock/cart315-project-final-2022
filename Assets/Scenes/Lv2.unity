@@ -1178,7 +1178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveAxis: 1
   finalVal: 0
-  speed: 0.08
+  speed: 0.02
 --- !u!1001 &1614470216
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1578,7 +1578,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventId: 
   func: GoToScene
-  val: 3
+  val: 2
   valType: 1
 --- !u!43 &2041639948
 Mesh:
