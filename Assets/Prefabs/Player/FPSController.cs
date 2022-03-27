@@ -46,11 +46,12 @@ public class FPSController : MonoBehaviour
     bool isGrounded = false;
 
     public bool canPlay = true;
-    public bool canLook = true;
-    public bool canMove = true; // not affecting jumping
-    public bool canAct = true;
+    private bool canLook = true;
+    private bool canMove = true; // not affecting jumping
+    private bool canJump = true;
+    private bool canAct = true;
 
-    public bool disableMovement = false;
+    private bool disableMovement = false;
     
 
     void Start()
@@ -83,6 +84,7 @@ public class FPSController : MonoBehaviour
             jumpBufferTimer = jumpBuffer;
             if (canPlay){
                 canMove = true;
+                canJump = true;
             }
             velocity.y = gravity;
             acceleration = normalAcc;
@@ -98,8 +100,9 @@ public class FPSController : MonoBehaviour
         }
 
         // handle jump
-        if (Input.GetButtonDown("Jump") && (isGrounded || jumpBufferTimer > 0)){
+        if (Input.GetButtonDown("Jump") && canJump && (isGrounded || jumpBufferTimer > 0)){
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity * gravityMultipler);
+            canJump = false;
         }
 
         velocity = Vector3.Lerp(velocity, move * walkSpeed, acceleration * Time.deltaTime);
@@ -149,6 +152,7 @@ public class FPSController : MonoBehaviour
         canPlay = val;
         canLook = val;
         canMove = val;
+        canJump = val;
         canAct = val;
         if (canPlay){
             Cursor.lockState = CursorLockMode.Locked;
