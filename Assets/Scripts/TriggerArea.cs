@@ -24,7 +24,14 @@ public class TriggerArea : MonoBehaviour
     private void OnTriggerEnter(Collider other){
         if (other.gameObject.tag == "Player"){
             //Debug.Log("In Area");
-            GetComponent<Trigger>().Triggered();
+            GetComponent<Trigger>().Triggered("OnEnter");
+        }
+    }
+
+    private void OnTriggerExit(Collider other){
+        if (other.gameObject.tag == "Player"){
+            //Debug.Log("In Area");
+            GetComponent<Trigger>().Triggered("OnExit");
         }
     }
 }

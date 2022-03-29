@@ -69,11 +69,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2149935505669740117, guid: 744ebd6f3a5a845278aea41848303690, type: 3}
       propertyPath: ShapeModule.angle
-      value: 10
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2149935505669740117, guid: 744ebd6f3a5a845278aea41848303690, type: 3}
       propertyPath: moveWithTransform
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2149935505669740117, guid: 744ebd6f3a5a845278aea41848303690, type: 3}
+      propertyPath: ColorModule.enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2149935505669740117, guid: 744ebd6f3a5a845278aea41848303690, type: 3}
       propertyPath: NoiseModule.enabled
@@ -86,6 +90,10 @@ PrefabInstance:
     - target: {fileID: 2149935505669740117, guid: 744ebd6f3a5a845278aea41848303690, type: 3}
       propertyPath: ShapeModule.radius.value
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2149935505669740117, guid: 744ebd6f3a5a845278aea41848303690, type: 3}
+      propertyPath: ClampVelocityModule.dampen
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2149935505669740117, guid: 744ebd6f3a5a845278aea41848303690, type: 3}
       propertyPath: EmissionModule.m_BurstCount
@@ -101,15 +109,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2149935505669740117, guid: 744ebd6f3a5a845278aea41848303690, type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 0.5
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 2149935505669740117, guid: 744ebd6f3a5a845278aea41848303690, type: 3}
       propertyPath: InitialModule.startSpeed.scalar
-      value: 2.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2149935505669740117, guid: 744ebd6f3a5a845278aea41848303690, type: 3}
       propertyPath: InitialModule.startSize.minScalar
-      value: 0.05
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 2149935505669740117, guid: 744ebd6f3a5a845278aea41848303690, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.size
@@ -126,6 +134,18 @@ PrefabInstance:
     - target: {fileID: 2149935505669740117, guid: 744ebd6f3a5a845278aea41848303690, type: 3}
       propertyPath: InitialModule.startSpeed.minScalar
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2149935505669740117, guid: 744ebd6f3a5a845278aea41848303690, type: 3}
+      propertyPath: InitialModule.startSize.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2149935505669740117, guid: 744ebd6f3a5a845278aea41848303690, type: 3}
+      propertyPath: InitialModule.startSizeY.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2149935505669740117, guid: 744ebd6f3a5a845278aea41848303690, type: 3}
+      propertyPath: InitialModule.startSizeZ.minMaxState
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2149935505669740117, guid: 744ebd6f3a5a845278aea41848303690, type: 3}
       propertyPath: InitialModule.startSpeed.minMaxState
@@ -171,6 +191,10 @@ PrefabInstance:
       propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_Curve.Array.data[1].outWeight
       value: 0.33333334
       objectReference: {fileID: 0}
+    - target: {fileID: 2149935505669740118, guid: 744ebd6f3a5a845278aea41848303690, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4408ebb710d124789892252a4cfd06ab, type: 2}
     - target: {fileID: 2149935505669740119, guid: 744ebd6f3a5a845278aea41848303690, type: 3}
       propertyPath: m_Name
       value: ParticleRocket Variant

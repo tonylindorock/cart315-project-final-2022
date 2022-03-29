@@ -3157,29 +3157,13 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1.588
       objectReference: {fileID: 0}
+    - target: {fileID: 8198642205900805047, guid: ac65beb860bc04233aa5123f5fc69688, type: 3}
+      propertyPath: triggerObject
+      value: 
+      objectReference: {fileID: 1926425840}
     m_RemovedComponents:
     - {fileID: 3816426170583024753, guid: ac65beb860bc04233aa5123f5fc69688, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ac65beb860bc04233aa5123f5fc69688, type: 3}
---- !u!1 &2098170568 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3816426170583024746, guid: ac65beb860bc04233aa5123f5fc69688, type: 3}
-  m_PrefabInstance: {fileID: 2098170567}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2098170569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2098170568}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb2d1435c11884d48b678da6a14ad937, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  triggerId: 
-  eventId: 
-  triggerObject: {fileID: 1926425840}
 --- !u!1 &2098170570 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4050920452655930101, guid: ac65beb860bc04233aa5123f5fc69688, type: 3}

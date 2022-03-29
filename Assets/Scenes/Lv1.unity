@@ -1426,26 +1426,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 557465449}
   m_CullTransparentMesh: 1
---- !u!1 &585694390 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3816426170583024746, guid: ac65beb860bc04233aa5123f5fc69688, type: 3}
-  m_PrefabInstance: {fileID: 3816426169822978020}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &585694392
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 585694390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb2d1435c11884d48b678da6a14ad937, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  triggerId: 
-  eventId: 
-  triggerObject: {fileID: 143897595}
 --- !u!1001 &616966582
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4299,6 +4279,10 @@ PrefabInstance:
       propertyPath: triggerObject
       value: 
       objectReference: {fileID: 143897595}
+    - target: {fileID: 3994674885641506316, guid: ac65beb860bc04233aa5123f5fc69688, type: 3}
+      propertyPath: triggerObject
+      value: 
+      objectReference: {fileID: 143897595}
     - target: {fileID: 4050920452655930101, guid: ac65beb860bc04233aa5123f5fc69688, type: 3}
       propertyPath: m_Name
       value: Door
@@ -4327,6 +4311,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1.588
       objectReference: {fileID: 0}
+    - target: {fileID: 8198642205900805047, guid: ac65beb860bc04233aa5123f5fc69688, type: 3}
+      propertyPath: triggerObject
+      value: 
+      objectReference: {fileID: 143897595}
     m_RemovedComponents:
     - {fileID: 3816426170583024753, guid: ac65beb860bc04233aa5123f5fc69688, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ac65beb860bc04233aa5123f5fc69688, type: 3}

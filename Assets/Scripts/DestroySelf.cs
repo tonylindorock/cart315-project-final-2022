@@ -27,17 +27,17 @@ public class DestroySelf : MonoBehaviour
         timeLeft -= Time.deltaTime;
 
         if (timeLeft < 0f){
-            DestoryWithEffect();
+            DestroyWithEffect();
         }
     }
 
     void OnTriggerEnter(Collider other){
         if (other.gameObject.tag == "DestroyArea"){
-            DestoryWithEffect();
+            DestroyWithEffect();
         }
     }
 
-    public void DestoryWithEffect(){
+    public void DestroyWithEffect(){
         SpawnParticle();
         Destroy(this.gameObject);
     }

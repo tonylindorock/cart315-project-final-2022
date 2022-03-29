@@ -20,9 +20,9 @@ TagManager:
   - FPS
   - Props
   - Throwable
-  - 
-  - 
-  - 
+  - Projectile
+  - Enemy
+  - Player
   - 
   - 
   - 
