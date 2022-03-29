@@ -355,10 +355,6 @@ MonoBehaviour:
   hand: {fileID: 2620549318801025955}
   throwForce: 1000
   canPlay: 1
-  canLook: 1
-  canMove: 1
-  canAct: 1
-  disableMovement: 0
 --- !u!114 &2838354337883177274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -659,7 +655,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 16, y: 16}
+  m_SizeDelta: {x: 12, y: 12}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &196194867708345911
 CanvasRenderer:
@@ -869,7 +865,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 16, y: 16}
+  m_SizeDelta: {x: 12, y: 12}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8865739462013465562
 CanvasRenderer:
