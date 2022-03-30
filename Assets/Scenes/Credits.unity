@@ -491,7 +491,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerId: 
-  eventId: 
+  eventId: Nothing
   triggerObject: {fileID: 1667368983}
 --- !u!1 &1438063716
 GameObject:
