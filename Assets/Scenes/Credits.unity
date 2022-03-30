@@ -460,6 +460,7 @@ MonoBehaviour:
   auto: 1
   repeat: 1
   func: Advance
+  displayTime: 0
 --- !u!114 &1420781109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -489,6 +490,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb2d1435c11884d48b678da6a14ad937, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerId: 
+  eventId: 
   triggerObject: {fileID: 1667368983}
 --- !u!1 &1438063716
 GameObject:
@@ -586,8 +589,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eef85f25216f4543bc37fa301b08401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventId: 
   func: GoToScene
-  val: 2
+  val: 0
   valType: 1
 --- !u!114 &1667368985
 MonoBehaviour:
@@ -602,6 +606,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 219033980}
+  player: {fileID: 0}
+  soundManager: {fileID: 0}
 --- !u!4 &1667368986
 Transform:
   m_ObjectHideFlags: 0

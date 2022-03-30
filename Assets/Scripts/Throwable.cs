@@ -46,9 +46,14 @@ public class Throwable : MonoBehaviour
     }
 
     public void Throw(float force){
-        Vector3 dir = owner.GetComponent<FPSController>().playerCamera.transform.forward;
+        // get looking dir
+        //Vector3 lookDir = owner.GetComponent<FPSController>().playerCamera.transform.forward;
+        // get first collision position
+        Vector3 targetPos = owner.GetComponent<FPSRaycast>().GetFirstCollisionPoint();
+        // get direction between holding point and collision point
+        Vector3 dir = targetPos - followPoint.transform.position;
         Drop();
-        body.AddForce(dir * force);
+        body.AddForce(dir.normalized * force);
     }
 
     public string GetName(){

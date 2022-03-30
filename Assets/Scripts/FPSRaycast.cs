@@ -22,6 +22,22 @@ public class FPSRaycast : MonoBehaviour
         range = val;
     }
 
+    public float GetFirstCollisionDist(){
+        RaycastHit hit;
+        if(Physics.Raycast(fpsCamera.position, fpsCamera.forward, out hit)){
+            return hit.distance;
+        }
+        return 0f;
+    }
+
+    public Vector3 GetFirstCollisionPoint(){
+        RaycastHit hit;
+        if(Physics.Raycast(fpsCamera.position, fpsCamera.forward, out hit)){
+            return hit.point;
+        }
+        return new Vector3();
+    }
+
     public void Shoot(){
         player.UpdateCrosshair(0);
 
