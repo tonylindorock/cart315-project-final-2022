@@ -28,7 +28,7 @@ public class PushPlayer : MonoBehaviour
 
     public void AddForce(Vector3 force){
         Vector3 dir = force.normalized;
-        dir.y = 1f;
+        dir.y = .5f;
         impact += dir.normalized * force.magnitude / mass;
     }
 }

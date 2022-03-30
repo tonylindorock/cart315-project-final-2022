@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 85039311205539019}
   - component: {fileID: 8896989362374937767}
   - component: {fileID: 837885556156562854}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WeaponCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 921953679512550478}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 921953679880602854}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 921953680012120542}
   - component: {fileID: 921953680012120543}
   - component: {fileID: 921953680012120536}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Mesh
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -278,7 +278,7 @@ GameObject:
   - component: {fileID: 921953680390892026}
   - component: {fileID: 2838354337883177274}
   - component: {fileID: 3644252247258243857}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FPSController
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -352,7 +352,7 @@ MonoBehaviour:
   groundDis: 0.4
   groundMask:
     serializedVersion: 2
-    m_Bits: 392
+    m_Bits: 1416
   hand: {fileID: 2620549318801025955}
   throwForce: 1000
   canPlay: 1
@@ -396,7 +396,7 @@ GameObject:
   - component: {fileID: 921953681092103780}
   - component: {fileID: 921953681092103781}
   - component: {fileID: 6288529873879280364}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MainCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -515,7 +515,7 @@ GameObject:
   - component: {fileID: 4621792628409833007}
   - component: {fileID: 6194000953479591226}
   - component: {fileID: 1537793625144715724}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -614,7 +614,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9104006608543332987}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: TargetPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -646,7 +646,7 @@ GameObject:
   - component: {fileID: 8137156432963019196}
   - component: {fileID: 196194867708345911}
   - component: {fileID: 4871779594908976692}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Crosshair_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -720,7 +720,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6692696568997530469}
   - component: {fileID: 7390805422077739222}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AudioSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -850,7 +850,7 @@ GameObject:
   - component: {fileID: 5611253689394732087}
   - component: {fileID: 2394502294425157193}
   - component: {fileID: 4978217867015260919}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Time
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -953,7 +953,7 @@ GameObject:
   - component: {fileID: 3135618583988662639}
   - component: {fileID: 8865739462013465562}
   - component: {fileID: 6660123135603460831}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Crosshair
   m_TagString: Untagged
   m_Icon: {fileID: 0}

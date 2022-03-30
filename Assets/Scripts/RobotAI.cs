@@ -17,6 +17,13 @@ public class RobotAI : MonoBehaviour
     public enum EnemyState {PATROL, PURSUE, ATTACK};
     public EnemyState state;
 
+    public float speed = 5f;
+
+    public bool lockX, lockY, lockZ;
+    public bool disableMovement = false;
+    public bool disableAttack = false;
+
+
     public GameObject body;
     public GameObject particles;
     public GameObject eye;
@@ -38,6 +45,7 @@ public class RobotAI : MonoBehaviour
     private bool canAttack = true;
 
     private void Awake() {
+        // store player reference
         player = GameObject.FindWithTag("Player").transform;
     }
 
@@ -58,6 +66,24 @@ public class RobotAI : MonoBehaviour
             }else{
                 LookAround();
             }
+
+            switch(state){
+                case EnemyState.PATROL:
+                    if (!disableMovement){
+
+                    }
+                    break;
+                case EnemyState.PURSUE:
+                    if (!disableMovement){
+                        //Pursue(Time.deltaTime);
+                    }
+                    break;
+                case EnemyState.ATTACK:
+                    if (!disableAttack && canAttack && InRange()){
+                    Attack();
+                }
+                    break;
+            }
         }
     }
 
@@ -66,10 +92,16 @@ public class RobotAI : MonoBehaviour
             playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerMask);
             playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerMask);
 
-            if (playerInSightRange){
-                Alert(true);
+            if (playerInAttackRange){
+                state = EnemyState.ATTACK;
             }else{
-                Alert(false);
+                if (playerInSightRange){
+                    Alert(true);
+                    state = EnemyState.PURSUE;
+                }else{
+                    Alert(false);
+                    state = EnemyState.PATROL;
+                }
             }
 
             if (!canAttack){
@@ -78,18 +110,6 @@ public class RobotAI : MonoBehaviour
                     canAttack = true;
                     timer = cooldown;
                 }
-            }
-
-            switch(state){
-                case EnemyState.PATROL:
-                    break;
-                case EnemyState.PURSUE:
-                    break;
-                case EnemyState.ATTACK:
-                    if (canAttack && InRange()){
-                        Attack();
-                    }
-                    break;
             }
         }
     }
@@ -147,16 +167,27 @@ public class RobotAI : MonoBehaviour
         return false;
     }
 
+    private bool HasClearShot(){
+        RaycastHit hit;
+        Vector3 targetDir = player.position - firePos.position;
+        if(Physics.Raycast(firePos.position, targetDir, out hit)){
+            if (hit.collider.gameObject.tag == "Player"){
+                print("Clear");
+                return true;
+            }
+        }
+        print("Not clear");
+        return false;
+    }
+
     private void Alert(bool val){
         if (eyeOnTarget != val){
             eyeOnTarget = val;
             Material[] materials = eye.GetComponent<MeshRenderer>().sharedMaterials;
             if (val){
                 materials[1] = eyeAttack;
-                state = EnemyState.ATTACK;
             }else{
                 materials[1] = eyeNormal;
-                state = EnemyState.PURSUE;
                 canAttack = false;
                 timer = cooldown;
             }
@@ -164,14 +195,26 @@ public class RobotAI : MonoBehaviour
         }
     }
 
+    private void Pursue(float delta){
+        Vector3 pos = transform.position;
+        if (!lockX){
+            pos = new Vector3(player.position.x, pos.y, pos.z);
+        }
+        if (!lockY){
+            pos = new Vector3(pos.x, player.position.y, pos.z);
+        }
+        if (!lockZ){
+            pos = new Vector3(pos.x, pos.y, player.position.z);
+        }
+        Vector3 dir = pos - transform.position;
+        GetComponent<Rigidbody>().MovePosition(transform.position + dir.normalized * speed * delta);
+    }
+
     private void Attack(){
-        Transform firePosTrans = firePos.GetComponent<Transform>();
-        GameObject bullet = Instantiate(projectile, firePosTrans.position, firePosTrans.rotation);
+        GameObject bullet = Instantiate(projectile, firePos.position, firePos.rotation);
+        Vector3 targetDir = player.position - firePos.position + new Vector3(0f, 1f, 0f);
 
-        Vector3 targetPos = player.position - firePosTrans.position + new Vector3(0f, 1f, 0f);
-
-        bullet.GetComponent<Rigidbody>().AddForce(Vector3.Normalize(targetPos) * projectileForce);
-
+        bullet.GetComponent<Rigidbody>().AddForce(targetDir.normalized * projectileForce);
         canAttack = false;
     }
 
