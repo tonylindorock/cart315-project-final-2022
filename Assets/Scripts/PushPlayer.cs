@@ -30,7 +30,5 @@ public class PushPlayer : MonoBehaviour
         Vector3 dir = force.normalized;
         dir.y = 1f;
         impact += dir.normalized * force.magnitude / mass;
-
-        GetComponent<AudioSource>().Play();
     }
 }

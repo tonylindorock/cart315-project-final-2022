@@ -141,5 +141,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uniqueName: Apple
-  damage: 10
+  damage: 25
   speed: 25

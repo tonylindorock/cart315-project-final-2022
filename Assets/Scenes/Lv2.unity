@@ -1051,6 +1051,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 921953680390892026, guid: 1d699964430d54a4c944890f562e6947, type: 3}
+      propertyPath: groundMask.m_Bits
+      value: 1416
+      objectReference: {fileID: 0}
     - target: {fileID: 921953680390892027, guid: 1d699964430d54a4c944890f562e6947, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -1618,7 +1622,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh20462
+  m_Name: pb_Mesh36424
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1948,12 +1952,8 @@ PrefabInstance:
       value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4263892236228674963, guid: f30bea368f59e47a8962e420c48a0a61, type: 3}
-      propertyPath: projectileForce
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 4263892236228674963, guid: f30bea368f59e47a8962e420c48a0a61, type: 3}
-      propertyPath: playerMask.m_Bits
-      value: 2048
+      propertyPath: sightRange
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4878425597598621535, guid: f30bea368f59e47a8962e420c48a0a61, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1993,7 +1993,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7236814219643094121, guid: f30bea368f59e47a8962e420c48a0a61, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.3059998
+      value: -5.81
       objectReference: {fileID: 0}
     - target: {fileID: 7236814219643094121, guid: f30bea368f59e47a8962e420c48a0a61, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2001,7 +2001,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7236814219643094121, guid: f30bea368f59e47a8962e420c48a0a61, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.201305
+      value: 17.31
       objectReference: {fileID: 0}
     - target: {fileID: 7236814219643094121, guid: f30bea368f59e47a8962e420c48a0a61, type: 3}
       propertyPath: m_LocalRotation.w

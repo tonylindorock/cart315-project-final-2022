@@ -303,7 +303,7 @@ GameObject:
   - component: {fileID: 4263892236228674963}
   - component: {fileID: 6757419634410118240}
   m_Layer: 0
-  m_Name: trashcan_robot
+  m_Name: TrashcanRobot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -339,7 +339,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &4263892236228674963
 MonoBehaviour:
@@ -355,14 +355,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   body: {fileID: 6843853674729621568}
+  particles: {fileID: 8535811413097505542}
   eye: {fileID: 612028552165351518}
   eyeSpeed: 5
   turnSpeed: 1.5
   eyeNormal: {fileID: 2100000, guid: 92c827aeb765f4f7ea4a9cbee4df0d31, type: 2}
   eyeAttack: {fileID: 2100000, guid: bef83b5423c9841d3b8c8e07e4be4313, type: 2}
+  eyeOff: {fileID: 2100000, guid: 0bc6871576a8b49a58d67ae5237a3f1d, type: 2}
+  range: 10
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 2048
   firePos: {fileID: 4878425597598621535}
   projectile: {fileID: 1667412546736636198, guid: 1007f0b17701a4fb5b582acac379c99d, type: 3}
-  projectileForce: 800
+  projectileForce: 1000
   cooldown: 2
 --- !u!64 &6757419634410118240
 MeshCollider:
@@ -375,7 +381,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -8545447256379345787, guid: 51673ae23b7df4f688bbd55a905f14ab, type: 3}
 --- !u!1 &8535811413097505542
