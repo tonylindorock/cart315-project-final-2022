@@ -72,7 +72,7 @@ public class FPSSoundManager : MonoBehaviour
     }
 
     public void PlayJumpSound(float volume){
-        RandomizePitch(0.8f, 1.3f);
+        RandomizePitch(0.95f, 1.3f);
         GetComponent<AudioSource>().PlayOneShot(jumpSound, Mathf.Clamp(volume, 0f, 1f));
     }
 }
