@@ -23,7 +23,6 @@ public class RobotAI : MonoBehaviour
     public bool disableMovement = false;
     public bool disableAttack = false;
 
-
     public GameObject body;
     public GameObject particles;
     public GameObject eye;
@@ -43,6 +42,12 @@ public class RobotAI : MonoBehaviour
     public float cooldown = 2f;
     private float timer = 0f;
     private bool canAttack = true;
+
+    public GameObject AudioPlayer;
+    public float volume = 0.5f;
+    public AudioClip SFX_BEEP_NORMAL;
+    public AudioClip SFX_BEEP_ATTACK;
+    public AudioClip SFX_DIE;
 
     private void Awake() {
         // store player reference
@@ -186,10 +191,12 @@ public class RobotAI : MonoBehaviour
             Material[] materials = eye.GetComponent<MeshRenderer>().sharedMaterials;
             if (val){
                 materials[1] = eyeAttack;
+                PlaySound(1, volume);
             }else{
                 materials[1] = eyeNormal;
                 canAttack = false;
                 timer = cooldown;
+                PlaySound(0, volume);
             }
             eye.GetComponent<MeshRenderer>().sharedMaterials = materials;
         }
@@ -223,6 +230,7 @@ public class RobotAI : MonoBehaviour
     }
 
     private void Die(){
+        PlaySound(2, 0.4f);
         particles.SetActive(false);
         // update material, turn off lights
         Material[] eyeMaterials = eye.GetComponent<MeshRenderer>().sharedMaterials;
@@ -233,5 +241,16 @@ public class RobotAI : MonoBehaviour
         body.GetComponent<MeshRenderer>().sharedMaterials = bodyMaterials;
 
         died = true;
+    }
+
+    private void PlaySound(int id, float volume = 1f){
+        if (id == 0){
+            AudioPlayer.GetComponent<AudioSource>().PlayOneShot(SFX_BEEP_NORMAL, volume);
+        }else if (id == 1){
+            AudioPlayer.GetComponent<AudioSource>().PlayOneShot(SFX_BEEP_ATTACK, volume);
+        }else{
+            AudioPlayer.GetComponent<AudioSource>().PlayOneShot(SFX_DIE, volume);
+        }
+        
     }
 }

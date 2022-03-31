@@ -1529,7 +1529,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23746
+  m_Name: pb_Mesh76600
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3794,10 +3794,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 921953680390892026, guid: 1d699964430d54a4c944890f562e6947, type: 3}
-      propertyPath: groundMask.m_Bits
-      value: 392
-      objectReference: {fileID: 0}
     - target: {fileID: 921953680390892027, guid: 1d699964430d54a4c944890f562e6947, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -3808,7 +3804,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 921953680390892027, guid: 1d699964430d54a4c944890f562e6947, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.14
+      value: 1.55
       objectReference: {fileID: 0}
     - target: {fileID: 921953680390892027, guid: 1d699964430d54a4c944890f562e6947, type: 3}
       propertyPath: m_LocalPosition.z

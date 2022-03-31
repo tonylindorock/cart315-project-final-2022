@@ -7,6 +7,8 @@ public class DestroySelf : MonoBehaviour
     public float waitTime = 1f;
     public GameObject despawnParticle;
 
+    private bool waitingForDestroy = false;
+
     float timeLeft = 0f;
     // Start is called before the first frame update
     void Start()
@@ -40,5 +42,13 @@ public class DestroySelf : MonoBehaviour
     public void DestroyWithEffect(){
         SpawnParticle();
         Destroy(this.gameObject);
+    }
+
+    public bool IsWaitingForDestroy(){
+        return waitingForDestroy;
+    }
+
+    public void WaitForDestroy(){
+        waitingForDestroy = true;
     }
 }

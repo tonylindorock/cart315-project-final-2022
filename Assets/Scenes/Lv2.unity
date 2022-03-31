@@ -182,6 +182,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 4603114891996050357, guid: 59ba605b5601b49a7ad5410f84ae26ca, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4603114893532390546, guid: 59ba605b5601b49a7ad5410f84ae26ca, type: 3}
       propertyPath: waitTime
       value: 999
@@ -198,9 +202,9 @@ GameObject:
   m_Component:
   - component: {fileID: 195006532}
   - component: {fileID: 195006531}
+  - component: {fileID: 195006528}
   - component: {fileID: 195006530}
   - component: {fileID: 195006529}
-  - component: {fileID: 195006528}
   m_Layer: 3
   m_Name: Room
   m_TagString: Untagged
@@ -513,6 +517,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7112893181344195936, guid: 59ba605b5601b49a7ad5410f84ae26ca, type: 3}
+      propertyPath: MaxDistance
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4603114891996016533, guid: 59ba605b5601b49a7ad5410f84ae26ca, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -1051,10 +1059,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
-    - target: {fileID: 921953680390892026, guid: 1d699964430d54a4c944890f562e6947, type: 3}
-      propertyPath: groundMask.m_Bits
-      value: 1416
-      objectReference: {fileID: 0}
     - target: {fileID: 921953680390892027, guid: 1d699964430d54a4c944890f562e6947, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -1175,6 +1179,61 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2478515483696181419, guid: 1d699964430d54a4c944890f562e6947, type: 3}
   m_PrefabInstance: {fileID: 1331172706}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1391443090
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1391443092}
+  - component: {fileID: 1391443091}
+  m_Layer: 0
+  m_Name: Audio Reverb Zone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!167 &1391443091
+AudioReverbZone:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391443090}
+  m_Enabled: 1
+  m_MinDistance: 11.725772
+  m_MaxDistance: 21.519447
+  m_ReverbPreset: 1
+  m_Room: -1000
+  m_RoomHF: -100
+  m_DecayTime: 1.49
+  m_DecayHFRatio: 0.83
+  m_Reflections: -2602
+  m_ReflectionsDelay: 0.007
+  m_Reverb: 200
+  m_ReverbDelay: 0.011
+  m_HFReference: 5000
+  m_Diffusion: 100
+  m_Density: 100
+  m_LFReference: 250
+  m_RoomLF: 0
+--- !u!4 &1391443092
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391443090}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 14.3, z: 8.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1423500196 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1765015170640341307, guid: 79ec1d21a9d9d4d1899dd4c26f0953e2, type: 3}
@@ -1490,6 +1549,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 4603114891996050357, guid: 59ba605b5601b49a7ad5410f84ae26ca, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4603114893532390546, guid: 59ba605b5601b49a7ad5410f84ae26ca, type: 3}
       propertyPath: waitTime
       value: 999
@@ -1622,7 +1685,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh24672
+  m_Name: pb_Mesh43324
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1930,6 +1993,10 @@ PrefabInstance:
     - target: {fileID: 5645567300766653355, guid: f30bea368f59e47a8962e420c48a0a61, type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6680743999531132327, guid: f30bea368f59e47a8962e420c48a0a61, type: 3}
+      propertyPath: MaxDistance
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6843853674729621568, guid: f30bea368f59e47a8962e420c48a0a61, type: 3}
       propertyPath: m_Layer

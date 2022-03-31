@@ -12,7 +12,7 @@ public class Throwable : MonoBehaviour
     public string uniqueName = "Throwable";
 
     public float damage = 10f;
-    public float speed = 1f;
+    public float speed = 10f;
 
     // Start is called before the first frame update
     void Start()
@@ -20,20 +20,30 @@ public class Throwable : MonoBehaviour
         body = GetComponent<Rigidbody>();
     }
 
+    private void LateUpdate() {
+        if (GetComponent<DestroySelf>().IsWaitingForDestroy()){
+            GetComponent<DestroySelf>().DestroyWithEffect();
+        }
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
         if (owner != null){
-            //Vector3 newPosition = Vector3.MoveTowards(transform.position, followPoint.transform.position, speed * Time.deltaTime);
-            //body.MovePosition(newPosition);
+            Vector3 newPosition = Vector3.Lerp(transform.position, followPoint.transform.position, speed * Time.deltaTime);
+            body.MovePosition(newPosition);
 
+            /*
             Vector3 direction = followPoint.transform.position - transform.position;
-            body.velocity = direction * speed;
+            Vector3 newVel = direction * speed
+            body.velocity = Vector3.Lerp(body.velocity, newVel, speed * Time.deltaTime);*/
         }
     }
 
     public void PickUp(GameObject newOwner, GameObject target){
         //body.isKinematic = true;
+        body.useGravity = false;
+        body.drag = 10f;
         body.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
         owner = newOwner;
         followPoint = target;
@@ -41,6 +51,8 @@ public class Throwable : MonoBehaviour
 
     public void Drop(){
         //body.isKinematic = false;
+        body.useGravity = true;
+        body.drag = 0.01f;
         body.constraints = RigidbodyConstraints.None;
         owner = null;
     }
@@ -58,5 +70,16 @@ public class Throwable : MonoBehaviour
 
     public string GetName(){
         return uniqueName;
+    }
+
+    private void OnCollisionEnter(Collision other) {
+        if (owner == null){
+            if (other.relativeVelocity.magnitude > 2f){
+                float audioLevel = other.relativeVelocity.magnitude / 30.0f;
+                float pitch = Random.Range(0.8f, 1.2f);
+                GetComponent<AudioSource>().pitch = pitch;
+                GetComponent<AudioSource>().PlayOneShot(GetComponent<AudioSource>().clip, audioLevel);
+            }
+        }
     }
 }

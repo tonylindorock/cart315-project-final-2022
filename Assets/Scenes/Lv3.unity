@@ -552,6 +552,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 438464741}
   hints:
+  - Hold\n[SHIFT]\n\nTo run
   - 'Pick up\nThe apple \n\nMouse: Left Click'
   - 'Throw\nThe apple \n\nMouse: Left Click'
   - Hit\nthe target

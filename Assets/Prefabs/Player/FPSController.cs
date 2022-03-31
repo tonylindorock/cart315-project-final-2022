@@ -12,7 +12,8 @@ public class FPSController : MonoBehaviour
     public float normalAcc = 6f;
     public float airAcc = 1f;
 
-    float speed = 0f;
+    private float speed = 0f;
+    private bool isRunning = false;
 
     public float jumpBuffer = 0.2f;
     private float jumpBufferTimer = 0f;
@@ -22,17 +23,21 @@ public class FPSController : MonoBehaviour
     public float gravityMultipler = 4f;
     public Camera playerCamera;
     public Camera weaponCamera;
+    private Vector3 orgMainCamPos;
+    public Vector2 mainCamOffset;
     public float lookSpeed = 10f;
     public float lookXLimit = 90f;
 
     public Transform groundCheck;
-    public float groundDis = 0.4f;
+    public Transform ceilingCheck;
+    public float checkDis = 0.4f;
     public LayerMask groundMask;
 
     CharacterController controller;
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
     Vector3 velocity;
+    Vector3 gVelocity;
 
     private FPSRaycast lookRaycast;
     public GameObject hand;
@@ -52,41 +57,82 @@ public class FPSController : MonoBehaviour
     private bool canAct = true;
 
     private bool disableMovement = false;
-    
+
+    private AudioSource audioPlayer;
+    public AudioClip SFX_BOUNCE;
+
+    public GameObject soundManager;
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
         lookRaycast = GetComponent<FPSRaycast>();
+
+        audioPlayer = GetComponent<AudioSource>();
         
         crosshairSolid = GameObject.Find("/FPSController/Canvas/Crosshair");
         crosshairHollow = GameObject.Find("/FPSController/Canvas/Crosshair_1");
 
         SetPlay(canPlay);
+
+        speed = walkSpeed;
+        orgMainCamPos = playerCamera.transform.localPosition;
+    }
+
+    private void LateUpdate() {
+        playerCamera.transform.localPosition = orgMainCamPos + new Vector3(mainCamOffset.x, mainCamOffset.y, 0f);
+        mainCamOffset = Vector2.Lerp(mainCamOffset, Vector2.zero, 10f * Time.deltaTime);
+    }
+
+    private void FixedUpdate() {
+        velocity = Vector3.Lerp(velocity, moveDirection * speed, acceleration * Time.deltaTime);
+
+        // apply gravity
+        gVelocity.y += gravity * gravityMultipler * Time.deltaTime;
+        
+        controller.Move((velocity + gVelocity) * Time.deltaTime);
     }
 
 
     void Update()
     {
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDis, groundMask);
-        // update directions
-        float x = 0f;
-        float z = 0f;
-        if(canMove){
-            x = Input.GetAxis("Horizontal");
-            z = Input.GetAxis("Vertical");
+        bool isOnGround = Physics.CheckSphere(groundCheck.position, checkDis, groundMask);
+        bool isOnCeiling = Physics.CheckSphere(ceilingCheck.position, checkDis, groundMask);
+        
+        // player lands from air
+        if (isOnGround != isGrounded && isOnGround){
+            float vol = Mathf.Abs(gVelocity.y/20f);
+            soundManager.GetComponent<FPSSoundManager>().PlayJumpSound(vol);
+
+            // lower camera
+            if (gVelocity.y <= -9.8f){
+                mainCamOffset.y = -0.4f;
+            }
+        }
+        isGrounded = isOnGround;
+
+        soundManager.GetComponent<FPSSoundManager>().ChangeState(0);
+        GetMovement();
+
+        if (isGrounded){
+            if (moveDirection.x != 0f || moveDirection.z != 0f){
+                if (isRunning){
+                    soundManager.GetComponent<FPSSoundManager>().SetMoveInterval(0.3f);
+                }else{
+                    soundManager.GetComponent<FPSSoundManager>().SetMoveInterval(0.5f);
+                }
+                soundManager.GetComponent<FPSSoundManager>().ChangeState(1);
+            }
         }
 
-        Vector3 move = (transform.right * x + transform.forward * z);
-
         // if on ground
-        if (isGrounded && velocity.y < 0f) {
+        if (isGrounded && gVelocity.y < 0f) {
             jumpBufferTimer = jumpBuffer;
             if (canPlay){
                 canMove = true;
                 canJump = true;
             }
-            velocity.y = gravity;
+            gVelocity.y = gravity;
             acceleration = normalAcc;
             controller.slopeLimit = 45f;
             controller.stepOffset = 0.3f;
@@ -101,20 +147,51 @@ public class FPSController : MonoBehaviour
 
         // handle jump
         if (Input.GetButtonDown("Jump") && canJump && (isGrounded || jumpBufferTimer > 0)){
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity * gravityMultipler);
+            gVelocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity * gravityMultipler);
             canJump = false;
         }
 
-        velocity = Vector3.Lerp(velocity, move * walkSpeed, acceleration * Time.deltaTime);
+        if (isOnCeiling){ 
+            gVelocity.y = 0f;
+        }
 
-        // apply gravity
-        velocity.y += gravity * gravityMultipler * Time.deltaTime;
-        
-        controller.Move(velocity * Time.deltaTime);
+        if (Input.GetKey(KeyCode.LeftShift)){
+            isRunning = true;
+            speed = runSpeed;
+        }else{
+            isRunning = false;
+            if (isGrounded){
+                speed = walkSpeed;
+            } 
+        }
 
         HandleLook();
         HandleInteract();
         //HandleFire();
+    }
+
+    private void GetMovement(){
+        // update directions
+        float x = 0f;
+        float z = 0f;
+        if(canMove){
+            // not pressing any keys, snap
+            if (Input.GetAxisRaw("Horizontal") == 0){
+                x = Input.GetAxisRaw("Horizontal");
+            // if moving, smooth
+            }else{
+                x = Input.GetAxis("Horizontal");
+            }
+
+            if (Input.GetAxisRaw("Vertical") == 0){
+                z = Input.GetAxisRaw("Vertical");
+            }else{
+                z = Input.GetAxis("Vertical");
+            }
+        }
+
+        moveDirection = (transform.right * x + transform.forward * z);
+        moveDirection = moveDirection.normalized;
     }
 
     private void HandleLook(){
@@ -173,5 +250,15 @@ public class FPSController : MonoBehaviour
 
     public void SetHoldingObj(GameObject obj){
         holdingObj = obj;
+    }
+
+    public void PlaySound(int id, float volume = 1f){
+        if (id == 0){
+            audioPlayer.PlayOneShot(SFX_BOUNCE, volume);
+        }
+    }
+
+    public Vector3 GetVelocity(){
+        return velocity;
     }
 }

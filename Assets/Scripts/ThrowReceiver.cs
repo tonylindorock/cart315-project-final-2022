@@ -25,7 +25,7 @@ public class ThrowReceiver : MonoBehaviour
     private void OnCollisionEnter(Collision other) {
         if (other.gameObject.tag == "Throwable" && other.gameObject.GetComponent<Throwable>().GetName() == receive.GetComponent<Throwable>().GetName()){
             Debug.Log("Receiver hit!");
-            other.gameObject.GetComponent<DestroySelf>().DestroyWithEffect();
+            other.gameObject.GetComponent<DestroySelf>().WaitForDestroy();
             OnReceived();
         }
     }
