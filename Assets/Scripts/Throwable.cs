@@ -30,20 +30,18 @@ public class Throwable : MonoBehaviour
     void FixedUpdate()
     {
         if (owner != null){
-            Vector3 newPosition = Vector3.Lerp(transform.position, followPoint.transform.position, speed * Time.deltaTime);
-            body.MovePosition(newPosition);
+            //Vector3 newPosition = Vector3.Lerp(transform.position, followPoint.transform.position, speed * Time.deltaTime);
+            //body.MovePosition(newPosition);
 
-            /*
             Vector3 direction = followPoint.transform.position - transform.position;
-            Vector3 newVel = direction * speed
-            body.velocity = Vector3.Lerp(body.velocity, newVel, speed * Time.deltaTime);*/
+            body.AddForce(direction * speed);
         }
     }
 
     public void PickUp(GameObject newOwner, GameObject target){
         //body.isKinematic = true;
         body.useGravity = false;
-        body.drag = 10f;
+        body.drag = 20f;
         body.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
         owner = newOwner;
         followPoint = target;
