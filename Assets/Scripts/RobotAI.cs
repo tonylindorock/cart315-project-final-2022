@@ -144,7 +144,6 @@ public class RobotAI : MonoBehaviour
             Vector3 lookPos = new Vector3(player.position.x, transform.position.y, player.position.z);
             eye.GetComponent<Transform>().LookAt(lookPos);
         }else{
-            
             eye.GetComponent<Transform>().rotation = Quaternion.Slerp(eye.GetComponent<Transform>().rotation, targetRot, eyeSpeed * delta);
         }
         // important, for attacking

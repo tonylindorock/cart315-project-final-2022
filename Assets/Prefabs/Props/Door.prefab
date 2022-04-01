@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3816426170583024752}
   - component: {fileID: 8198642205900805047}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Portal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -136,7 +136,8 @@ GameObject:
   - component: {fileID: 3709860108731908175}
   - component: {fileID: 347843189661798378}
   - component: {fileID: 2537565910865312544}
-  m_Layer: 0
+  - component: {fileID: 4697123413877602320}
+  m_Layer: 7
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,6 +209,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4697123413877602320
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4050920452655930101}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -6360558719573625917, guid: e9583b5effc8e4c929177d79ea9cd26c, type: 3}
 --- !u!1 &8117241290836218490
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,8 +235,8 @@ GameObject:
   - component: {fileID: 7765719361828114781}
   - component: {fileID: 1694983590301136540}
   - component: {fileID: 1189712853628790653}
-  m_Layer: 0
-  m_Name: Cube_1
+  m_Layer: 7
+  m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

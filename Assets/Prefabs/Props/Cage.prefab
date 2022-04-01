@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5648272353105587564}
   - component: {fileID: 7603842598365845926}
   - component: {fileID: 9099473773750263072}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 9099473773902691767}
   - component: {fileID: 9099473773902691760}
   - component: {fileID: 9099473773902691761}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Backlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 9099473774834497637}
   - component: {fileID: 9099473774834497638}
   - component: {fileID: 9099473774834497639}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Glass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
