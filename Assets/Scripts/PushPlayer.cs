@@ -31,6 +31,6 @@ public class PushPlayer : MonoBehaviour
         dir.y = .5f;
         impact += dir.normalized * force.magnitude / mass;
 
-        GetComponent<FPSController>().PlaySound(0, 0.5f);
+        GetComponent<FPSController>().PlaySound(0, 0.25f);
     }
 }

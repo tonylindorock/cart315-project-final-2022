@@ -134,7 +134,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 20
+  MaxDistance: 15
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -411,7 +411,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7804299330263000202}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.764, z: 0.69}
+  m_LocalPosition: {x: 0, y: 1.764, z: 0.912}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5570101878142879421}
@@ -466,7 +466,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 1
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &4263892236228674963
@@ -483,11 +483,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   speed: 2.5
+  moveArea: {fileID: 0}
   lockX: 0
   lockY: 1
   lockZ: 0
   disableMovement: 0
   disableAttack: 0
+  responseTime: 2
   body: {fileID: 6843853674729621568}
   particles: {fileID: 8535811413097505542}
   eye: {fileID: 612028552165351518}

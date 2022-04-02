@@ -14,14 +14,22 @@ public class RobotAI : MonoBehaviour
 
     private bool died = false;
 
-    public enum EnemyState {PATROL, PURSUE, ATTACK};
+    public enum EnemyState {PATROL, PURSUE, STOP};
     public EnemyState state;
 
     public float speed = 5f;
 
+    public GameObject moveArea;
+
     public bool lockX, lockY, lockZ;
     public bool disableMovement = false;
     public bool disableAttack = false;
+
+    private Vector3 moveDir;
+    private bool stopAtBound = false;
+
+    public float responseTime = 2f;
+    private float responseTimer = 2f;
 
     public GameObject body;
     public GameObject particles;
@@ -57,7 +65,7 @@ public class RobotAI : MonoBehaviour
     void Start()
     {
         timer = cooldown;
-        Alert(false);
+        responseTimer = responseTime;
     }
 
     // Update is called once per frame
@@ -79,15 +87,28 @@ public class RobotAI : MonoBehaviour
                     }
                     break;
                 case EnemyState.PURSUE:
-                    if (!disableMovement){
-                        //Pursue(Time.deltaTime);
+                    if (!disableMovement && !stopAtBound){
+                        Pursue(Time.deltaTime);
                     }
                     break;
-                case EnemyState.ATTACK:
-                    if (!disableAttack && canAttack && InRange()){
-                    Attack();
-                }
+                case EnemyState.STOP:
+                    
                     break;
+            }
+
+            if (!disableAttack && playerInAttackRange && canAttack && InRange()){
+                Attack();
+            }
+        }
+    }
+
+    void LateUpdate(){
+        if (!died){
+            // check player position not every frame
+            responseTimer -= Time.deltaTime;
+            if (responseTimer <= 0f){
+                responseTimer = responseTime;
+                UpdateNewPosition();
             }
         }
     }
@@ -96,17 +117,13 @@ public class RobotAI : MonoBehaviour
         if (!died){
             playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerMask);
             playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerMask);
-
-            if (playerInAttackRange){
-                state = EnemyState.ATTACK;
+            
+            if (playerInSightRange){
+                Alert(true);
+                state = EnemyState.PURSUE;
             }else{
-                if (playerInSightRange){
-                    Alert(true);
-                    state = EnemyState.PURSUE;
-                }else{
-                    Alert(false);
-                    state = EnemyState.PATROL;
-                }
+                Alert(false);
+                state = EnemyState.PATROL;
             }
 
             if (!canAttack){
@@ -122,8 +139,7 @@ public class RobotAI : MonoBehaviour
     // handle throwable collision
     private void OnCollisionEnter(Collision other) {
         if (other.gameObject.tag == "Throwable" && !died){
-            Vector3 vel = other.gameObject.GetComponent<Rigidbody>().velocity;
-            if (vel.sqrMagnitude > 0.2f){
+            if (other.relativeVelocity.magnitude > 2f){
                 GetComponent<Rigidbody>().isKinematic = false;
                 Vector3 throwablePos = new Vector3(other.gameObject.transform.position.x, transform.position.y, transform.position.z);
                 Vector3 dir = transform.position - throwablePos;
@@ -202,18 +218,57 @@ public class RobotAI : MonoBehaviour
     }
 
     private void Pursue(float delta){
+        if (moveArea != null && !IsInBound()){
+            stopAtBound = true;
+            if (!lockX){
+                ClampValOutOfBound(0);
+            }
+            if (!lockY){
+                ClampValOutOfBound(1);
+            }
+            if (!lockZ){
+                ClampValOutOfBound(2);
+            }
+            return;
+        }
+        GetComponent<Rigidbody>().MovePosition(transform.position + moveDir.normalized * speed * delta);
+        
+    }
+
+    private void UpdateNewPosition(){
         Vector3 pos = transform.position;
         if (!lockX){
             pos = new Vector3(player.position.x, pos.y, pos.z);
         }
         if (!lockY){
-            pos = new Vector3(pos.x, player.position.y, pos.z);
+            pos = new Vector3(pos.x,player.position.y, pos.z);
         }
         if (!lockZ){
             pos = new Vector3(pos.x, pos.y, player.position.z);
         }
-        Vector3 dir = pos - transform.position;
-        GetComponent<Rigidbody>().MovePosition(transform.position + dir.normalized * speed * delta);
+
+        moveDir = pos - transform.position;
+        stopAtBound = false;
+    }
+
+    private bool IsInBound(){
+        return moveArea.GetComponent<BoxCollider>().bounds.Contains(transform.position);
+    }
+
+    private void ClampValOutOfBound(int axis){
+        BoxCollider area = moveArea.GetComponent<BoxCollider>();
+        Vector3 pos = transform.position;
+        float newVal;
+        if (axis == 0){
+            newVal = Mathf.Clamp(transform.position.x, area.bounds.min.x, area.bounds.max.x);
+            transform.position = new Vector3(newVal, transform.position.y, transform.position.z);
+        }else if (axis == 1){
+            newVal = Mathf.Clamp(transform.position.y, area.bounds.min.y, area.bounds.max.y);
+            transform.position = new Vector3(transform.position.x, newVal, transform.position.z);
+        }else{
+            newVal = Mathf.Clamp(transform.position.z, area.bounds.min.z, area.bounds.max.z);
+            transform.position = new Vector3(transform.position.x, transform.position.y, newVal);
+        }   
     }
 
     private void Attack(){
@@ -229,7 +284,7 @@ public class RobotAI : MonoBehaviour
     }
 
     private void Die(){
-        PlaySound(2, 0.4f);
+        PlaySound(2, 0.25f);
         particles.SetActive(false);
         // update material, turn off lights
         Material[] eyeMaterials = eye.GetComponent<MeshRenderer>().sharedMaterials;

@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 5827391422715122162}
   - component: {fileID: 5827391422713991986}
   - component: {fileID: 5827391422716021584}
-  - component: {fileID: 5827391422716021585}
   - component: {fileID: 5827391422716021590}
   - component: {fileID: -4466915190544512791}
   - component: {fileID: -4756431732268594529}
+  - component: {fileID: 7008047378302919854}
   m_Layer: 7
   m_Name: onion
   m_TagString: Throwable
@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 5827391422715923954}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -102,19 +102,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!135 &5827391422716021585
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5827391422715923954}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.17
-  m_Center: {x: 0, y: -0.04, z: 0}
 --- !u!114 &5827391422716021590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,7 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueName: Onion
   damage: 10
-  speed: 400
+  speed: 500
 --- !u!82 &-4756431732268594529
 AudioSource:
   m_ObjectHideFlags: 0
@@ -240,3 +227,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!136 &7008047378302919854
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5827391422715923954}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.17261706
+  m_Height: 0.3
+  m_Direction: 1
+  m_Center: {x: 0.000000022351742, y: -0.03, z: 0}
