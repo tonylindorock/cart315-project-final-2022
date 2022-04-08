@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     private float a;
     private bool startAnim = false;
 
+    private bool gamePaused;
+
     
     // Start is called before the first frame update
     void Start()
@@ -24,7 +26,14 @@ public class GameManager : MonoBehaviour
     }
 
     void Update(){
-        
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            gamePaused = !gamePaused;
+            if (gamePaused){
+                Cursor.lockState = CursorLockMode.None;
+            }else{
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+        }
     }
 
     public void StartGame(){
