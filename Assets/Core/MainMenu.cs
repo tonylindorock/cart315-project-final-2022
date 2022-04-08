@@ -19,6 +19,7 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame(){
         GameObject.Find("GameManager").GetComponent<GameManager>().StartGame();
+        GameObject.Find("SoundManager").GetComponent<AudioLowPassFilter>().cutoffFrequency = 1000f;
     }
 
     public void QuitGame(){

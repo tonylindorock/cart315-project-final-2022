@@ -1369,8 +1369,8 @@ AudioReverbZone:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1391443090}
   m_Enabled: 1
-  m_MinDistance: 11.725772
-  m_MaxDistance: 21.519447
+  m_MinDistance: 17.483671
+  m_MaxDistance: 23.367325
   m_ReverbPreset: 1
   m_Room: -1000
   m_RoomHF: -100
@@ -2164,7 +2164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f980b9a0f44547d48f57991fda257b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTime: 5
+  waitTime: 3
   auto: 1
   repeat: 1
   func: UpdateHint

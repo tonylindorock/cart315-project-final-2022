@@ -506,7 +506,7 @@ MonoBehaviour:
   firePos: {fileID: 4878425597598621535}
   projectile: {fileID: 1667412546736636198, guid: 1007f0b17701a4fb5b582acac379c99d, type: 3}
   projectileForce: 1500
-  cooldown: 2
+  cooldown: 1
   AudioPlayer: {fileID: 771940024185937658}
   volume: 0.2
   SFX_BEEP_NORMAL: {fileID: 8300000, guid: 9e9d924640e064aa9bc8b514aa7e10a1, type: 3}
